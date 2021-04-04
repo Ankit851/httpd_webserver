@@ -1,0 +1,22 @@
+# tasks file for httpd_webserver
+
+- name: "Installing the package"
+  package:
+         name: "{{ package_name }}"
+         state: present
+
+- name: "installing the php on the webserver"
+  package:
+                    name: "php"
+                    state: present
+
+- name: "Copying content to the webserver"
+  copy:
+          src:  "/var/www/html/index.php"
+          dest: "/var/www/html/index.php"
+
+- name: "Starting the webservice"
+  service:
+          name: "{{ service_name }}"
+          state: started
+          enabled: yes
